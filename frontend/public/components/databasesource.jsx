@@ -13,9 +13,8 @@ import { ResourceEventStream } from './events';
 import { DatabaseSourceModel } from '../models';
 
 
-const { common, ExpandPVC } = Kebab.factory;
+const { common } = Kebab.factory;
 const menuActions = [
-  ExpandPVC,
   ...Kebab.getExtensionsActionsForKind(DatabaseSourceModel),
   ...common,
 ];
