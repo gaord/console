@@ -831,6 +831,19 @@ metadata:
 spec:
   hrefTemplate: 'https://example.com/logs?resourceName=\${resourceName}&containerName=\${containerName}&resourceNamespace=\${resourceNamespace}&podLabels=\${podLabels}'
   text: Example Logs
+`).setIn([referenceForModel(k8sModels.DatabaseSourceModel), 'default'], `
+apiVersion: beta.sup-info.me/v1
+kind: DatabaseSource
+metadata:
+  name: ''
+spec:
+  account: ''
+  dname: ''
+  host: ''
+  name: ''
+  port: 0
+  pwd: ''
+  type: ''
 `);
 
 const pluginTemplates = ImmutableMap<GroupVersionKind, ImmutableMap<string, string>>()

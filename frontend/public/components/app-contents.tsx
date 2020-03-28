@@ -196,6 +196,8 @@ const AppContents = connect((state: RootState) => ({
 
           <LazyRoute path="/k8s/ns/:ns/persistentvolumeclaims/~new/form" exact kind="PersistentVolumeClaim" loader={() => import('./storage/create-pvc' /* webpackChunkName: "create-pvc" */).then(m => m.CreatePVC)} />
 
+          <LazyRoute path="/k8s/ns/:ns/databasesources/~new/form" exact kind="DatabaseSource" loader={() => import('./create-dbs' /* webpackChunkName: "create-dbs" */).then(m => m.CreateDBS)} />
+          
           <LazyRoute path="/monitoring/alerts" exact loader={() => import('./monitoring' /* webpackChunkName: "monitoring" */).then(m => m.MonitoringUI)} />
           <LazyRoute path="/monitoring/silences" exact loader={() => import('./monitoring' /* webpackChunkName: "monitoring" */).then(m => m.MonitoringUI)} />
           <LazyRoute path="/monitoring/alertmanageryaml" exact loader={() => import('./monitoring' /* webpackChunkName: "monitoring" */).then(m => m.MonitoringUI)} />

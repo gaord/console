@@ -112,6 +112,19 @@ const plugin: Plugin<ConsumedExtensions> = [
   {
     type: 'NavItem/ResourceNS',
     properties: {
+      section: 'Workloads',
+      perspective: 'admin',
+      componentProps: {
+        name: 'DatabseSource',
+        resource: 'databasesources',
+        required: FLAGS.OPENSHIFT,
+        testID: 'advanced-databasesource-header',
+      },
+    },
+  },
+  {
+    type: 'NavItem/ResourceNS',
+    properties: {
       section: 'Advanced',
       perspective: 'dev',
       componentProps: {

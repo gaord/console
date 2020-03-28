@@ -170,6 +170,18 @@ export const PodModel: K8sKind = {
   labelPlural: 'Pods',
 };
 
+export const DatabaseSourceModel: K8sKind = {
+  apiVersion: 'v1',
+  apiGroup: 'beta.sup-info.me',
+  label: 'DatabaseSource',
+  plural: 'databasesources',
+  abbr: 'DBS',
+  namespaced: true,
+  kind: 'DatabaseSource',
+  id: 'databasesource',
+  labelPlural: 'Database Sources',
+};
+
 export const ContainerModel: K8sKind = {
   apiVersion: 'v1',
   label: 'Container',
