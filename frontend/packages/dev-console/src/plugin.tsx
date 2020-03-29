@@ -115,7 +115,7 @@ const plugin: Plugin<ConsumedExtensions> = [
       section: 'Workloads',
       perspective: 'admin',
       componentProps: {
-        name: 'DatabaseSource',
+        name: 'Database Sources',
         resource: 'databasesources',
         required: FLAGS.OPENSHIFT,
         testID: 'advanced-databasesource-header',
@@ -128,7 +128,7 @@ const plugin: Plugin<ConsumedExtensions> = [
       section: 'Workloads',
       perspective: 'admin',
       componentProps: {
-        name: 'DataJob',
+        name: 'Data Jobs',
         resource: 'datajobs',
         required: FLAGS.OPENSHIFT,
         testID: 'advanced-datajob-header',
