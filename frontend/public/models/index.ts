@@ -182,6 +182,18 @@ export const DatabaseSourceModel: K8sKind = {
   labelPlural: 'Database Sources',
 };
 
+export const DataJobModel: K8sKind = {
+  apiVersion: 'v1',
+  apiGroup: 'beta.sup-info.me',
+  label: 'DataJob',
+  plural: 'datajobs',
+  abbr: 'DJ',
+  namespaced: true,
+  kind: 'DataJob',
+  id: 'datajob',
+  labelPlural: 'Data Jobs',
+};
+
 export const ContainerModel: K8sKind = {
   apiVersion: 'v1',
   label: 'Container',

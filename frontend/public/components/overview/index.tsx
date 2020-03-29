@@ -1039,6 +1039,12 @@ const Overview_: React.SFC<OverviewProps> = ({mock, match, selectedItem, resourc
       namespace,
       prop: 'databaseSources',
     },
+    {
+      isList: true,
+      kind: 'DataJob',
+      namespace,
+      prop: 'datajobs',
+    },
   ];
   let crdUtils = [];
   resourceList.forEach(resource => {
