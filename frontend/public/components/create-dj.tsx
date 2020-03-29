@@ -53,7 +53,7 @@ class CreateDJPage extends React.Component<CreateDJPageProps, CreateDJPageState>
             {title}
           </div>
           <div className="co-m-pane__heading-link">
-            <Link to={`/k8s/ns/${namespace}/databasesources/~new`} id="yaml-link" replace>Edit YAML</Link>
+            <Link to={`/k8s/ns/${namespace}/datajobs/~new`} id="yaml-link" replace>Edit YAML</Link>
           </div>
         </h1>
         <form className="co-m-pane__body-group" onSubmit={this.save}>

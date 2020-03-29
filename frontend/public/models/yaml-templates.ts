@@ -844,6 +844,13 @@ spec:
   port: 0
   pwd: ''
   type: ''
+`).setIn([referenceForModel(k8sModels.DataJobModel), 'default'], `
+apiVersion: beta.sup-info.me/v1
+kind: DataJob
+metadata:
+  name: ''
+spec:
+  cmname: ''
 `);
 
 const pluginTemplates = ImmutableMap<GroupVersionKind, ImmutableMap<string, string>>()
