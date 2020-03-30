@@ -16,7 +16,7 @@ import { SecretValue } from '@console/internal/components/configmap-and-secret-d
 import { configureUpdateStrategyModal } from './configure-update-strategy';
 
 const Default: React.SFC<SpecCapabilityProps> = ({value}) => {
-  if (_.isEmpty(value) && !_.isNumber(value)) {
+  if (_.isEmpty(value) && !_.isNumber(value) && !_.isBoolean(value)) {
     return <span className="text-muted">None</span>;
   } else if (_.isObject(value)) {
     return <span className="text-muted">Unsupported</span>;
@@ -49,7 +49,8 @@ const K8sResourceLink: React.SFC<SpecCapabilityProps> = (props) => _.isEmpty(pro
 const BasicSelector: React.SFC<SpecCapabilityProps> = ({value, capability}) => <Selector selector={value} kind={capability.split(SpecCapability.selector)[1]} />;
 
 const BooleanSwitch: React.FC<SpecCapabilityProps> = (props) => {
-  const [value, setValue] = React.useState(props.value);
+  const convertedValue = !_.isNil(props.value) ? props.value : false;
+  const [value, setValue] = React.useState(convertedValue);
   const [confirmed, setConfirmed] = React.useState(false);
 
   const patchFor = (val: boolean) => [{op: 'add', path: `/spec/${props.descriptor.path.replace('.', '/')}`, value: val}];
@@ -69,8 +70,8 @@ const BooleanSwitch: React.FC<SpecCapabilityProps> = (props) => {
       offText="False"
       bsSize="mini" />
     &nbsp;&nbsp;
-    {value !== props.value && confirmed && <LoadingInline />}
-    {value !== props.value && !confirmed && <React.Fragment>
+    {value !== convertedValue && confirmed && <LoadingInline />}
+    {value !== convertedValue && !confirmed && <React.Fragment>
       &nbsp;&nbsp;<YellowExclamationTriangleIcon />
       <button className="btn btn-link" onClick={update}>Confirm change</button>
     </React.Fragment>}

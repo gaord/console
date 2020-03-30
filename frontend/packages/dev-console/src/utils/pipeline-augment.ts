@@ -55,19 +55,19 @@ export interface Pipeline extends K8sResourceKind {
   latestRun?: PipelineRun;
   spec?: {
     pipelineRef?: { name: string };
-    params: Param[];
+    params: PipelineParam[];
     resources: PipelineResource[];
     tasks: K8sResourceKind[];
-    serviceAccount?: string;
+    serviceAccountName?: string;
   };
 }
 
 export interface PipelineRun extends K8sResourceKind {
   spec?: {
     pipelineRef?: { name: string };
-    params?: Param[];
+    params?: PipelineRunParam[];
     resources?: PipelineResource[];
-    serviceAccount?: string;
+    serviceAccountName?: string;
   };
   status?: {
     succeededCondition?: string;
@@ -86,9 +86,19 @@ export interface Condition {
   message?: string;
 }
 
-export interface Param {
-  input: string;
-  output: string;
+interface Param {
+  name: string;
+}
+
+export interface PipelineParam extends Param {
+  default?: string;
+  description?: string;
+}
+
+export interface PipelineRunParam extends Param {
+  value: string;
+  input?: string;
+  output?: string;
   resource?: object;
 }
 
