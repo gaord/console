@@ -3,17 +3,20 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { ActionGroup, Button } from '@patternfly/react-core';
-import { k8sCreate, K8sResourceKind, referenceFor } from '../module/k8s';
+import { k8sCreate, K8sResourceKind, referenceFor } from '@console/internal/module/k8s';
 import {
-//  AsyncComponent,
   ButtonBar,
   history,
   resourceObjPath,
-} from './utils';
-import { DatabaseSourceModel } from '../models/index';
+} from '@console/internal/components/utils';
+import { DatabaseSourceModel } from './models/index';
 
-export const CreateDBS = ({ match: { params } }) => {
-  return <CreateDBSPage namespace={params.ns} />;
+// export const CreateDBS = ({ match: { params } }) => {
+//   return <CreateDBSPage namespace={params.ns} />;
+// };
+
+export const CreateDBS = (props) => {
+  return <CreateDBSPage namespace={props.match.params.ns} />;
 };
 
 class CreateDBSPage extends React.Component<CreateDBSPageProps, CreateDBSPageState> {

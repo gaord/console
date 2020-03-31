@@ -3,19 +3,21 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { ActionGroup, Button } from '@patternfly/react-core';
-import { k8sCreate, K8sResourceKind, referenceFor } from '../module/k8s';
+import { k8sCreate, K8sResourceKind, referenceFor } from '@console/internal/module/k8s';
 import {
-//  AsyncComponent,
   ButtonBar,
   history,
   resourceObjPath,
-} from './utils';
-import { DataJobModel } from '../models/index';
+} from '@console/internal/components/utils';
+import { DataJobModel } from './models/index';
 
-export const CreateDJ = ({ match: { params } }) => {
-  return <CreateDJPage namespace={params.ns} />;
+// export const CreateDJ = ({ match: { params } }) => {
+//   return <CreateDJPage namespace={params.ns} />;
+// };
+
+export const CreateDJ = (props) => {
+  return <CreateDJPage namespace={props.match.params.ns} />;
 };
-
 class CreateDJPage extends React.Component<CreateDJPageProps, CreateDJPageState> {
   state = {
     error: '',

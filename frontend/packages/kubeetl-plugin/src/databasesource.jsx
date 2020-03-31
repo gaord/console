@@ -4,13 +4,13 @@ import { sortable } from '@patternfly/react-table';
 import * as classNames from 'classnames';
 
 //import { Status } from '@console/shared';
-import { connectToFlags } from '../reducers/features';
+import { connectToFlags } from '@console/internal/reducers/features';
 //import { Conditions } from './conditions';
-import { FLAGS } from '../const';
-import { DetailsPage, ListPage, Table, TableRow, TableData } from './factory';
-import { Kebab, navFactory, ResourceKebab, SectionHeading, ResourceLink, ResourceSummary, Selector } from './utils';
-import { ResourceEventStream } from './events';
-import { DatabaseSourceModel } from '../models';
+import { FLAGS } from '@console/internal/const';
+import { DetailsPage, ListPage, Table, TableRow, TableData } from '@console/internal/components/factory';
+import { Kebab, navFactory, ResourceKebab, SectionHeading, ResourceLink, ResourceSummary, Selector } from '@console/internal/components/utils';
+import { ResourceEventStream } from '@console/internal/components/events';
+import { DatabaseSourceModel } from '@console/internal/models';
 
 
 const { common } = Kebab.factory;

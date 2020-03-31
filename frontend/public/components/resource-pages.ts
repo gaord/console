@@ -19,8 +19,6 @@ import {
   CronJobModel,
   CustomResourceDefinitionModel,
   DaemonSetModel,
-  DatabaseSourceModel,
-  DataJobModel,
   DeploymentConfigModel,
   DeploymentModel,
   HorizontalPodAutoscalerModel,
@@ -131,9 +129,7 @@ export const baseDetailsPages = ImmutableMap<ResourceMapKey, ResourceMapValue>()
   .set(referenceForModel(InstallPlanModel), () => import('./operator-lifecycle-manager/install-plan' /* webpackChunkName: "install-plan" */).then(m => m.InstallPlanDetailsPage))
   .set(referenceForModel(ClusterOperatorModel), () => import('./cluster-settings/cluster-operator' /* webpackChunkName: "cluster-operator" */).then(m => m.ClusterOperatorDetailsPage))
   .set(referenceForModel(ClusterVersionModel), () => import('./cluster-settings/cluster-version' /* webpackChunkName: "cluster-version" */).then(m => m.ClusterVersionDetailsPage))
-  .set(referenceForModel(OAuthModel), () => import('./cluster-settings/oauth' /* webpackChunkName: "oauth" */).then(m => m.OAuthDetailsPage))
-  .set(referenceForModel(DatabaseSourceModel), () => import('./databasesource' /* webpackChunkName: "databasesource" */).then(m => m.DatabaseSourcesDetailsPage))
-  .set(referenceForModel(DataJobModel), () => import('./datajob' /* webpackChunkName: "datajob" */).then(m => m.DataJobsDetailsPage));
+  .set(referenceForModel(OAuthModel), () => import('./cluster-settings/oauth' /* webpackChunkName: "oauth" */).then(m => m.OAuthDetailsPage));
 
 export const resourceDetailsPages = ImmutableMap<ResourceMapKey, ResourceMapValue>()
   .merge(baseDetailsPages)
@@ -196,9 +192,7 @@ export const baseListPages = ImmutableMap<ResourceMapKey, ResourceMapValue>()
   .set(referenceForModel(PackageManifestModel), () => import('./operator-lifecycle-manager/package-manifest' /* webpackChunkName: "package-manifest" */).then(m => m.PackageManifestsPage))
   .set(referenceForModel(SubscriptionModel), () => import('./operator-lifecycle-manager/subscription' /* webpackChunkName: "subscription" */).then(m => m.SubscriptionsPage))
   .set(referenceForModel(InstallPlanModel), () => import('./operator-lifecycle-manager/install-plan' /* webpackChunkName: "install-plan" */).then(m => m.InstallPlansPage))
-  .set(referenceForModel(ClusterOperatorModel), () => import('./cluster-settings/cluster-operator' /* webpackChunkName: "cluster-operator" */).then(m => m.ClusterOperatorPage))
-  .set(referenceForModel(DatabaseSourceModel), () => import('./databasesource' /* webpackChunkName: "databasesource" */).then(m => m.DatabaseSourcesPage))
-  .set(referenceForModel(DataJobModel), () => import('./datajob' /* webpackChunkName: "datajob" */).then(m => m.DataJobsPage));
+  .set(referenceForModel(ClusterOperatorModel), () => import('./cluster-settings/cluster-operator' /* webpackChunkName: "cluster-operator" */).then(m => m.ClusterOperatorPage));
 
 export const resourceListPages = ImmutableMap<ResourceMapKey, ResourceMapValue>()
   .merge(baseListPages)
