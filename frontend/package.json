@@ -83,6 +83,7 @@
     "formik": "2.0.1-rc.1",
     "fuzzysearch": "1.0.x",
     "history": "4.x",
+    "immutability-helper": "^3.0.2",
     "immutable": "3.x",
     "js-base64": "^2.5.1",
     "js-yaml": "^3.13.1",
