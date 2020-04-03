@@ -91,58 +91,6 @@ class CreateDJPage extends React.Component<CreateDJPageProps, CreateDJPageState>
   }
 }
 
-let defaulJob = {
-    setting: {
-      speed: {
-        channel: 1
-      },
-      errorLimit: {
-        record: 1,
-        percentage: 1
-      },
-    },
-    content: {
-      reader: {
-        name: '',
-        parameter: {
-          username: '',
-          password: '',
-          column: [''],
-          splitPk: '',
-          where: '',
-          querySql: '',
-          fetchSize: 1024,
-          session: [''],
-          connection: [
-            {              
-              table: [''],
-              jdbcUrl: [''],
-            },
-          ],
-        },
-      },
-      writer: {
-        name: '',
-        parameter: {
-          username: '',
-          password: '',
-          column: [''],
-          preSql: '',
-          postSql: '',
-          batchSize: 1024,
-          session: [''],
-          writeMode: '',
-          connection: [
-            {              
-              table: [''],
-              jdbcUrl: [''],
-            },
-          ],
-        }
-      },
-    },
-};
-
 export class CreateDJForm extends React.Component<CreateDJFormProps, CreateDJFormState> {
   state = {
     configmapName: '',
@@ -224,10 +172,9 @@ export class CreateDJForm extends React.Component<CreateDJFormProps, CreateDJFor
   };
 
   render() {
-    const { configmapName } = this.state;
-
     return (
-      <div>
+      <React.Fragment>
+        <FormSection title="通用设置">
         <label className="control-label co-required" htmlFor="configmap-name">
           ConfigMap名称
         </label>
@@ -267,7 +214,7 @@ export class CreateDJForm extends React.Component<CreateDJFormProps, CreateDJFor
           通道数量是关于数据传输速度的设置.
           </p>
         </div>
-
+        </FormSection>
         <FormSection title="读取设置">
         <label className="control-label co-required" htmlFor="src-dbs-dropdown">
           读取数据源
@@ -364,8 +311,48 @@ export class CreateDJForm extends React.Component<CreateDJFormProps, CreateDJFor
           从列表中选择数据写入目标.
           </p>
         </div>
+
+        <label className="control-label co-required" htmlFor="presql">
+          写入前Sql
+        </label>
+        <div className="form-group">
+          <input
+            className="pf-c-form-control"
+            type="text"
+            onChange={this.handleChange}
+            placeholder="my presql"
+            aria-describedby="presql-help"
+            id="presql"
+            name="job.content.writer.parameter.preSql"
+            pattern="[a-z0-9](?:[-a-z0-9]*[a-z0-9])?"
+            required
+          />
+          <p className="help-block" id="presql-help">
+          数据作业前需要执行的sql语句.
+          </p>
+        </div>
+
+        <label className="control-label co-required" htmlFor="postsql">
+          写入后Sql
+        </label>
+        <div className="form-group">
+          <input
+            className="pf-c-form-control"
+            type="text"
+            onChange={this.handleChange}
+            placeholder="my postsql"
+            aria-describedby="postsql-help"
+            id="postsql"
+            name="job.content.writer.parameter.postSql"
+            pattern="[a-z0-9](?:[-a-z0-9]*[a-z0-9])?"
+            required
+          />
+          <p className="help-block" id="postsql-help">
+          数据作业后需要执行的sql语句.
+          </p>
+        </div>
         </FormSection>
-      </div>
+      </React.Fragment>
     );
   }
 };
@@ -414,6 +401,58 @@ type Job = {
       }
     };
   };
+};
+
+let defaulJob: Job = {
+  setting: {
+    speed: {
+      channel: 1
+    },
+    errorLimit: {
+      record: 1,
+      percentage: 1
+    },
+  },
+  content: {
+    reader: {
+      name: '',
+      parameter: {
+        username: '',
+        password: '',
+        column: [''],
+        splitPk: '',
+        where: '',
+        querySql: '',
+        fetchSize: 1024,
+        session: [''],
+        connection: [
+          {              
+            table: [''],
+            jdbcUrl: [''],
+          },
+        ],
+      },
+    },
+    writer: {
+      name: '',
+      parameter: {
+        username: '',
+        password: '',
+        column: [''],
+        preSql: '',
+        postSql: '',
+        batchSize: 1024,
+        session: [''],
+        writeMode: '',
+        connection: [
+          {              
+            table: [''],
+            jdbcUrl: [''],
+          },
+        ],
+      }
+    },
+  },
 };
 
 export type CreateDJFormProps = {
