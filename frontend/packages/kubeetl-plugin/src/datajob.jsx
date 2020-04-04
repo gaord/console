@@ -3,14 +3,12 @@ import * as _ from 'lodash-es';
 import { sortable } from '@patternfly/react-table';
 import * as classNames from 'classnames';
 
-//import { Status } from '@console/shared';
 import { connectToFlags } from '@console/internal/reducers/features';
-//import { Conditions } from './conditions';
 import { FLAGS } from '@console/internal/const';
 import { DetailsPage, ListPage, Table, TableRow, TableData } from '@console/internal/components/factory';
 import { Kebab, navFactory, ResourceKebab, SectionHeading, ResourceLink, ResourceSummary, Selector } from '@console/internal/components/utils';
 import { ResourceEventStream } from '@console/internal/components/events';
-import { DataJobModel } from '@console/internal/models';
+import { DataJobModel } from './models';
 
 
 const { common } = Kebab.factory;

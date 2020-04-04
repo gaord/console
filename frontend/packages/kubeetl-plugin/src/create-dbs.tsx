@@ -11,10 +11,6 @@ import {
 } from '@console/internal/components/utils';
 import { DatabaseSourceModel } from './models/index';
 
-// export const CreateDBS = ({ match: { params } }) => {
-//   return <CreateDBSPage namespace={params.ns} />;
-// };
-
 export const CreateDBS = (props) => {
   return <CreateDBSPage namespace={props.match.params.ns} />;
 };
@@ -127,8 +123,6 @@ export class CreateDBSForm extends React.Component<CreateDBSFormProps, CreateDBS
   };
 
   render() {
-    const { dbAccount, dbName, dbHost, dbType, passwd, port, name } = this.state;
-
     return (
       <div>
         <label className="control-label co-required" htmlFor="dbs-name">
