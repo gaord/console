@@ -16,6 +16,7 @@ import { namespace } from 'd3';
 import FormSection from '@console/dev-console/src/components/import/section/FormSection';
 import update from 'immutability-helper';
 
+
 export const CreateDJ = (props) => {
   return <CreateDJPage namespace={props.match.params.ns} />;
 };
@@ -93,10 +94,10 @@ class CreateDJPage extends React.Component<CreateDJPageProps, CreateDJPageState>
 
 export class CreateDJForm extends React.Component<CreateDJFormProps, CreateDJFormState> {
   state = {
-    configmapName: '',
+    configmapName: null,
     job: defaulJob,
-    srcDbs: {},
-    dstDbs: {},
+    // srcDbs: null,
+    // dstDbs: null,
   };
 
   getLiteralObjectFromDotPath(dotPath: string, value: string): string
@@ -109,24 +110,78 @@ export class CreateDJForm extends React.Component<CreateDJFormProps, CreateDJFor
     out +='{\"$set\":\"'+ value +'\"}'+_.repeat('}',leftItem.length);
     return out;
   };
+
+  setJobState( newJob: Job ){
+    //为了增量更新state.job中的特定属性
+    let tempJob = this.state.job;
+    let finalJob = update(tempJob, newJob as any);
+    this.setState( {job:{...finalJob}} as any, this.onChange);    
+  }
   
   handleChange: React.ReactEventHandler<HTMLInputElement> = event => {
     const { name, value } = event.currentTarget;
-    let literalObj = this.getLiteralObjectFromDotPath(name,value);
-    
-    //为了增量更新state.job中的特定属性
-    let tempJob = this.state.job;
-    let finalJob = update(tempJob,JSON.parse(literalObj).job);
-    this.setState( {job:{...finalJob}} as any, this.onChange);
-  };
+    if(name.indexOf(".") > 0)
+    {
+      let literalObj = this.getLiteralObjectFromDotPath(name,value);
+      this.setJobState(JSON.parse(literalObj).job);  
+    }
+    else{
+      this.setState({ [name]: value } as any, this.onChange);
+    }
+    };
 
   onChange = () => {
     return this.props.onChange(this.updateDJ());
   }
+  
+  getJobFromDBS(dbsObj: K8sResourceKind, isSource: boolean): any
+  {
+    let spec = (dbsObj as K8sResourceKind).spec;
+    let jdbcUrl = 'jdbc:' + spec.type + '://' + spec.host + ':' + spec.port + '/' + spec.dname;
+    if(isSource)
+    {
+      return {
+        content: {
+          reader: {
+            name: {$set: spec.type + 'reader'},
+            parameter: {
+              username: {$set: spec.account},
+              password: {$set: spec.pwd},
+              connection: [
+                {              
+                  jdbcUrl: {$set: [jdbcUrl]},
+                },
+              ],
+            },
+          },
+        },    
+      };
+    }
+    else
+    {
+      return {
+        content: {
+          writer: {
+            name: {$set: spec.type + 'writer'},
+            parameter: {
+              username: {$set: spec.account},
+              password: {$set: spec.pwd},
+              connection: [
+                {              
+                  jdbcUrl: {$set: [jdbcUrl]},
+                },
+              ],
+            }
+          },
+        },    
+      };  
+    }
+  };
 
   handleSrcDbs = (name: string ) => {
     k8sGet(DatabaseSourceModel,name,this.props.namespace).then((obj) => {
-      this.setState({srcDbs: obj});    
+      //this.setState({srcDbs: obj});
+      this.setJobState(this.getJobFromDBS(obj, true));
     },(error) => {
       console.error(error.message);
     })
@@ -134,7 +189,8 @@ export class CreateDJForm extends React.Component<CreateDJFormProps, CreateDJFor
 
   handleDstDbs = (name: string ) => {
     k8sGet(DatabaseSourceModel,name,this.props.namespace).then((obj) => {
-      this.setState({dstDbs: obj});    
+      //this.setState({dstDbs: obj});
+      this.setJobState(this.getJobFromDBS(obj, false));    
     },(error) => {
       console.error(error.message);
     })
@@ -233,7 +289,7 @@ export class CreateDJForm extends React.Component<CreateDJFormProps, CreateDJFor
           </p>
         </div>
 
-        <label className="control-label co-required" htmlFor="tables">
+        <label className="control-label co-required" htmlFor="src-tables">
           表名
         </label>
         <div className="form-group">
@@ -241,19 +297,19 @@ export class CreateDJForm extends React.Component<CreateDJFormProps, CreateDJFor
             className="pf-c-form-control"
             type="text"
             onChange={this.handleChange}
-            placeholder="mytables"
-            aria-describedby="tables-help"
-            id="tables"
+            placeholder="my src tables"
+            aria-describedby="src-tables-help"
+            id="src-tables"
             name="job.content.reader.parameter.connection.table"
             pattern="[a-z0-9](?:[-a-z0-9]*[a-z0-9])?"
             required
           />
-          <p className="help-block" id="tables-help">
+          <p className="help-block" id="src-tables-help">
           读取的一个或者多个表名称列表.
           </p>
         </div>
 
-        <label className="control-label co-required" htmlFor="columns">
+        <label className="control-label co-required" htmlFor="src-columns">
           列名
         </label>
         <div className="form-group">
@@ -261,14 +317,14 @@ export class CreateDJForm extends React.Component<CreateDJFormProps, CreateDJFor
             className="pf-c-form-control"
             type="text"
             onChange={this.handleChange}
-            placeholder="mycolumns"
-            aria-describedby="columns-help"
-            id="columns"
+            placeholder="my src columns"
+            aria-describedby="src-columns-help"
+            id="src-columns"
             name="job.content.reader.parameter.column"
             pattern="[a-z0-9](?:[-a-z0-9]*[a-z0-9])?"
             required
           />
-          <p className="help-block" id="columns-help">
+          <p className="help-block" id="src-columns-help">
           读取的一个或者多个表中列名称列表.
           </p>
         </div>
@@ -351,6 +407,46 @@ export class CreateDJForm extends React.Component<CreateDJFormProps, CreateDJFor
           数据作业后需要执行的sql语句.
           </p>
         </div>
+
+        <label className="control-label co-required" htmlFor="dst-tables">
+          表名
+        </label>
+        <div className="form-group">
+          <input
+            className="pf-c-form-control"
+            type="text"
+            onChange={this.handleChange}
+            placeholder="my dst tables"
+            aria-describedby="dst-tables-help"
+            id="dst-tables"
+            name="job.content.writer.parameter.connection.table"
+            pattern="[a-z0-9](?:[-a-z0-9]*[a-z0-9])?"
+            required
+          />
+          <p className="help-block" id="dst-tables-help">
+          写入的一个或者多个表名称列表.
+          </p>
+        </div>
+
+        <label className="control-label co-required" htmlFor="dst-columns">
+          列名
+        </label>
+        <div className="form-group">
+          <input
+            className="pf-c-form-control"
+            type="text"
+            onChange={this.handleChange}
+            placeholder="my dst columns"
+            aria-describedby="dst-columns-help"
+            id="dst-columns"
+            name="job.content.writer.parameter.column"
+            pattern="[a-z0-9](?:[-a-z0-9]*[a-z0-9])?"
+            required
+          />
+          <p className="help-block" id="dst-columns-help">
+          写入的一个或者多个表中列名称列表.
+          </p>
+        </div>
         </FormSection>
       </React.Fragment>
     );
@@ -365,6 +461,7 @@ type Job = {
   setting: {
     speed: {
       channel: number;
+      byte: number;
     };
     errorLimit: {
       record: number;
@@ -406,7 +503,8 @@ type Job = {
 let defaulJob: Job = {
   setting: {
     speed: {
-      channel: 1
+      channel: 1,
+      byte: 10240
     },
     errorLimit: {
       record: 1,
@@ -462,8 +560,8 @@ export type CreateDJFormProps = {
 export type CreateDJFormState = {
   configmapName: string;
   job: Job;
-  srcDbs: K8sResourceKind;
-  dstDbs: K8sResourceKind;
+  // srcDbs: K8sResourceKind;
+  // dstDbs: K8sResourceKind;
 };
 
 export type CreateDJPageProps = {
