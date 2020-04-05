@@ -219,9 +219,7 @@ export class CreateDJForm extends React.Component<CreateDJFormProps, CreateDJFor
       },
       data: {
         'config.json': `|
-        {
-        ${JSON.stringify(this.state.job)}
-        }`     
+${JSON.stringify(this.state.job,null,4)}`     
       },
     };
     return {djObj,cmObj};
