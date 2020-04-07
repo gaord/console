@@ -10,35 +10,38 @@ import ocpLogoImg from '../imgs/openshift-platform-logo.svg';
 import onlineLogoImg from '../imgs/openshift-online-logo.svg';
 import dedicatedLogoImg from '../imgs/openshift-dedicated-logo.svg';
 import azureLogoImg from '../imgs/azure-red-hat-openshift-logo.svg';
+import myLogo from '../imgs/logo-3.png';
 
 export const getBrandingDetails = () => {
   let logoImg, productName;
   // Webpack won't bundle these images if we don't directly reference them, hence the switch
-  switch (window.SERVER_FLAGS.branding) {
-    case 'openshift':
-      logoImg = openshiftLogoImg;
-      productName = 'Red Hat OpenShift';
-      break;
-    case 'ocp':
-      logoImg = ocpLogoImg;
-      productName = 'Red Hat OpenShift Container Platform';
-      break;
-    case 'online':
-      logoImg = onlineLogoImg;
-      productName = 'Red Hat OpenShift Online';
-      break;
-    case 'dedicated':
-      logoImg = dedicatedLogoImg;
-      productName = 'Red Hat OpenShift Dedicated';
-      break;
-    case 'azure':
-      logoImg = azureLogoImg;
-      productName = 'Azure Red Hat OpenShift';
-      break;
-    default:
-      logoImg = okdLogoImg;
-      productName = 'OKD';
-  }
+  // switch (window.SERVER_FLAGS.branding) {
+  //   case 'openshift':
+  //     logoImg = openshiftLogoImg;
+  //     productName = '森艾电子,深爱科技';
+  //     break;
+  //   case 'ocp':
+  //     logoImg = ocpLogoImg;
+  //     productName = 'R森艾电子,深爱科技';
+  //     break;
+  //   case 'online':
+  //     logoImg = onlineLogoImg;
+  //     productName = 'Red Hat OpenShift Online';
+  //     break;
+  //   case 'dedicated':
+  //     logoImg = dedicatedLogoImg;
+  //     productName = 'Red Hat OpenShift Dedicated';
+  //     break;
+  //   case 'azure':
+  //     logoImg = azureLogoImg;
+  //     productName = '森艾电子,深爱科技';
+  //     break;
+  //   default:
+  //     logoImg = okdLogoImg;
+  //     productName = '森艾电子,深爱科技';
+  // }
+  logoImg = myLogo;
+  productName = '森艾电子,深爱科技';
   if (window.SERVER_FLAGS.customLogoURL) {
     logoImg = window.SERVER_FLAGS.customLogoURL;
   }

@@ -106,3 +106,9 @@ $overview-sidebar-width: 550px;
   font-size: 14px;
   margin-left: var(--pf-global--spacer--sm);
 }
+.pf-c-page__header-brand-link .pf-c-brand {
+  height: 40px;
+}
+.pf-c-nav__item .pf-c-nav__simple-list .pf-c-nav__link {
+  line-height: 32px;
+}

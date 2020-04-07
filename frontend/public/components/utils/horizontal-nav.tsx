@@ -37,17 +37,17 @@ type NavFactory = {[name: string]: (c?: React.ComponentType<any>) => Page};
 export const navFactory: NavFactory = {
   details: component => ({
     href: '',
-    name: 'Overview',
+    name: '概述',
     component,
   }),
   events: component => ({
     href: 'events',
-    name: 'Events',
+    name: '事件',
     component,
   }),
   logs: component => ({
     href: 'logs',
-    name: 'Logs',
+    name: 'Logs日志',
     component,
   }),
   editYaml: (component = editYamlComponent) => ({
@@ -62,7 +62,7 @@ export const navFactory: NavFactory = {
   }),
   roles: component => ({
     href: 'roles',
-    name: 'Role Bindings',
+    name: '角色绑定',
     component,
   }),
   builds: component => ({
@@ -72,22 +72,22 @@ export const navFactory: NavFactory = {
   }),
   envEditor: (component) => ({
     href: 'environment',
-    name: 'Environment',
+    name: '环境',
     component,
   }),
   clusterServiceClasses: component => ({
     href: 'serviceclasses',
-    name: 'Service Classes',
+    name: '服务类',
     component,
   }),
   clusterServicePlans: component => ({
     href: 'serviceplans',
-    name: 'Service Plans',
+    name: '服务计划',
     component,
   }),
   serviceBindings: component => ({
     href: 'servicebindings',
-    name: 'Service Bindings',
+    name: '服务绑定',
     component,
   }),
   clusterOperators: component => ({
@@ -97,22 +97,22 @@ export const navFactory: NavFactory = {
   }),
   machineConfigs: component => ({
     href: 'machineconfigs',
-    name: 'Machine Configs',
+    name: '机器配置',
     component,
   }),
   machines: component => ({
     href: 'machines',
-    name: 'Machines',
+    name: '机器',
     component,
   }),
   workloads: component => ({
     href: 'workloads',
-    name: 'Workloads',
+    name: '工作负载',
     component,
   }),
   history: component => ({
     href: 'history',
-    name: 'History',
+    name: '历史',
     component,
   }),
 };

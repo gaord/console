@@ -141,8 +141,8 @@ const categorize = (items, categories) => {
  * (exported for test purposes)
  */
 export const categorizeItems = (items, itemsSorter, initCategories) => {
-  const allCategory = {id: 'all', label: 'All Items'};
-  const otherCategory = {id: 'other', label: 'Other'};
+  const allCategory = {id: 'all', label: '所有项目'};
+  const otherCategory = {id: 'other', label: '其他'};
 
   const categories = {
     all: allCategory,

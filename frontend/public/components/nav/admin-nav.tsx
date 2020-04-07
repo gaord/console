@@ -30,8 +30,8 @@ type SeparatorProps = {
 }
 // Wrap `NavItemSeparator` so we can use `required` without prop type errors.
 const Separator: React.FC<SeparatorProps> = () => <NavItemSeparator />;
-
-const searchStartsWith = ['search'];
+// 注释
+// const searchStartsWith = ['search'];
 const provisionedServicesStartsWith = ['serviceinstances', 'servicebindings'];
 const brokerManagementStartsWith = ['clusterservicebrokers', 'clusterserviceclasses'];
 const rolesStartsWith = ['roles', 'clusterroles'];
@@ -41,7 +41,8 @@ const imagestreamsStartsWith = ['imagestreams', 'imagestreamtags'];
 const monitoringAlertsStartsWith = ['monitoring/alerts', 'monitoring/alertrules', 'monitoring/silences', 'monitoring/alertmanageryaml'];
 const clusterSettingsStartsWith = ['settings/cluster', 'settings/idp', 'config.openshift.io'];
 const meteringStartsWith = ['metering.openshift.io'];
-const apiExplorerStartsWith = ['api-explorer', 'api-resource'];
+// 注释
+// const apiExplorerStartsWith = ['api-explorer', 'api-resource'];
 
 const monitoringNavSectionStateToProps = (state) => ({
   canAccess: !!state[featureReducerName].get(FLAGS.CAN_GET_NS),
@@ -66,12 +67,13 @@ const MonitoringNavSection = connect(monitoringNavSectionStateToProps)(Monitorin
 
 const AdminNav = () => (
   <React.Fragment>
-    <NavSection title="Home">
+    <NavSection title="工作区">
       <HrefLink href="/dashboards" activePath="/dashboards/" name="Dashboards" required={FLAGS.CAN_LIST_NS} />
-      <ResourceClusterLink resource="projects" name="Projects" required={FLAGS.OPENSHIFT} />
+      <HrefLink href="/catalog/all-namespaces" activePath="/catalog/all-namespaces" name="开发者目录" required={FLAGS.CAN_LIST_NS} />
+      {/* <ResourceClusterLink resource="projects" name="Projects" required={FLAGS.OPENSHIFT} />
       <HrefLink href="/search" name="Search" startsWith={searchStartsWith} />
       <HrefLink href="/api-explorer" name="Explore" startsWith={apiExplorerStartsWith} />
-      <ResourceNSLink resource="events" name="Events" />
+      <ResourceNSLink resource="events" name="Events" /> */}
     </NavSection>
 
     <NavSection title="Operators" required={FLAGS.OPERATOR_LIFECYCLE_MANAGER}>

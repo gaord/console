@@ -13,7 +13,7 @@ import { TileViewPage } from '../utils/tile-view-page';
 export const catalogCategories = {
   languages: {
     id: 'languages',
-    label: 'Languages',
+    label: '语言',
     field: 'tags',
     subcategories: {
       java: {id: 'java', label: 'Java', values: ['java']},
@@ -28,7 +28,7 @@ export const catalogCategories = {
   },
   databases: {
     id: 'databases',
-    label: 'Databases',
+    label: '数据库',
     field: 'tags',
     subcategories: {
       mongodb: {id: 'mongodb', label: 'Mongo', field: 'tags', values: ['mongodb']},
@@ -39,7 +39,7 @@ export const catalogCategories = {
   },
   middleware: {
     id: 'middleware',
-    label: 'Middleware',
+    label: '中间件',
     field: 'tags',
     subcategories: {
       integration: {id: 'integration', label: 'Integration', field: 'tags', values: ['amq', 'fuse', 'jboss-fuse', 'sso', '3scale']},
@@ -59,7 +59,7 @@ export const catalogCategories = {
   },
   virtualization: {
     id: 'virtualization',
-    label: 'Virtualization',
+    label: '虚拟化',
     field: 'tags',
     subcategories: {
       vms: {id: 'vms', label: 'Virtual Machines', field: 'tags', values: ['virtualmachine']},
@@ -70,6 +70,7 @@ export const catalogCategories = {
 const pageDescription = 'Add shared apps, services, or source-to-image builders to your project from the Developer ' +
   'Catalog. Cluster admins can install additional apps which will show up here automatically.';
 
+const pageDescription = '从开发人员将共享应用程序、服务或源添加到图像生成器到项目中+目录。群集管理员可以安装其他应用程序，这些应用程序将自动显示在此处';
 // Filter property white list
 const filterGroups = [
   'kind',
@@ -79,22 +80,22 @@ const getAvailableFilters = initialFilters => {
   const filters = _.cloneDeep(initialFilters);
   filters.kind = {
     ClusterServiceClass: {
-      label: 'Service Class',
+      label: '服务等级',
       value: 'ClusterServiceClass',
       active: false,
     },
     Template: {
-      label: 'Template',
+      label: '模板',
       value: 'Template',
       active: false,
     },
     ImageStream: {
-      label: 'Source-to-Image',
+      label: '图像流',
       value: 'ImageStream',
       active: false,
     },
     ClusterServiceVersion: {
-      label: 'Installed Operators',
+      label: '已安装应用',
       value: 'InstalledOperator',
       active: false,
     },

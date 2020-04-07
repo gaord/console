@@ -309,9 +309,12 @@ export const CatalogPage = withStartGuide(({match, noProjectsAvailable}) => {
       <title>Developer Catalog</title>
     </Helmet>
     <div className="co-catalog">
-      <PageHeading title="Developer Catalog" />
-      <p className="co-catalog-page__description">
+      <PageHeading title="开发者目录" />
+      {/* <p className="co-catalog-page__description">
       Add shared apps, services, or source-to-image builders to your project from the Developer Catalog. Cluster admins can install additional apps which will show up here automatically.
+      </p> */}
+      <p className="co-catalog-page__description">
+      从开发人员将共享应用程序、服务或源添加到图像生成器到项目中+目录。群集管理员可以安装其他应用程序，这些应用程序将自动显示在此处
       </p>
       <Catalog namespace={namespace} mock={noProjectsAvailable} />
     </div>
