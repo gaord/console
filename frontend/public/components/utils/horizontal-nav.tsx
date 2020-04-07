@@ -73,7 +73,7 @@ export const navFactory: NavFactory = {
   envEditor: (component) => ({
     href: 'environment',
     name: '环境',
-    component,
+    component, 
   }),
   clusterServiceClasses: component => ({
     href: 'serviceclasses',

@@ -181,7 +181,7 @@ export class CatalogListPage extends React.Component {
       const tileIconClass = tileImgUrl ? null : iconClass;
       const tileDescription = _.get(tag, 'annotations.description');
       const tags = getAnnotationTags(tag);
-      const createLabel = 'Create Application';
+      const createLabel = '创建应用';
       const tileProvider = _.get(tag, ['annotations', ANNOTATIONS.providerDisplayName]);
       const href = `/catalog/source-to-image?imagestream=${name}&imagestream-ns=${namespace}&preselected-ns=${currentNamespace}`;
       const builderImageTag = _.head(_.get(imageStream,'spec.tags'));

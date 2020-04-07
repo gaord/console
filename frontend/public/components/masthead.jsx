@@ -10,7 +10,7 @@ import ocpLogoImg from '../imgs/openshift-platform-logo.svg';
 import onlineLogoImg from '../imgs/openshift-online-logo.svg';
 import dedicatedLogoImg from '../imgs/openshift-dedicated-logo.svg';
 import azureLogoImg from '../imgs/azure-red-hat-openshift-logo.svg';
-import myLogo from '../imgs/logo-3.png';
+import myLogo from '../imgs/logo-new.png';
 
 export const getBrandingDetails = () => {
   let logoImg, productName;
@@ -18,7 +18,7 @@ export const getBrandingDetails = () => {
   // switch (window.SERVER_FLAGS.branding) {
   //   case 'openshift':
   //     logoImg = openshiftLogoImg;
-  //     productName = '森艾电子,深爱科技';
+  //     productName = '森艾电子,深爱科技'; 
   //     break;
   //   case 'ocp':
   //     logoImg = ocpLogoImg;

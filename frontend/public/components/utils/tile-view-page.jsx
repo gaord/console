@@ -142,7 +142,7 @@ const categorize = (items, categories) => {
  */
 export const categorizeItems = (items, itemsSorter, initCategories) => {
   const allCategory = {id: 'all', label: '所有项目'};
-  const otherCategory = {id: 'other', label: '其他'};
+  const otherCategory = {id: 'other', label: '其他'}; 
 
   const categories = {
     all: allCategory,

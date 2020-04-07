@@ -74,7 +74,7 @@ const AdminNav = () => (
       <HrefLink href="/search" name="Search" startsWith={searchStartsWith} />
       <HrefLink href="/api-explorer" name="Explore" startsWith={apiExplorerStartsWith} />
       <ResourceNSLink resource="events" name="Events" /> */}
-    </NavSection>
+    </NavSection> 
 
     <NavSection title="Operators" required={FLAGS.OPERATOR_LIFECYCLE_MANAGER}>
       <HrefLink

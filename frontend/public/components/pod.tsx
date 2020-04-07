@@ -298,7 +298,7 @@ const PodExecLoader: React.FC<PodExecLoaderProps> = ({obj}) => <div className="c
     </div>
   </div>
 </div>;
-
+ 
 export const PodsDetailsPage: React.FC<PodDetailsPageProps> = props => <DetailsPage
   {...props}
   menuActions={menuActions}

@@ -99,7 +99,7 @@ const getAvailableFilters = initialFilters => {
       value: 'InstalledOperator',
       active: false,
     },
-  };
+  }; 
 
   return filters;
 };
